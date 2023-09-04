@@ -6,11 +6,16 @@ public class Biglietto {
     //ATTRIBUTI
     private int eta;
     private int km;
+    private final static BigDecimal SCONTO_MINORI = new BigDecimal("0.2");
+    private final static BigDecimal SCONTO_MAGGIORI = new BigDecimal("0.4");
+    private final static BigDecimal PREZZO_KM = new BigDecimal("0.21");
 
     //COSTRUTTORI
 
 
     public Biglietto(int eta, int km) {
+        isValidKm(km);
+        isValidEta(eta);
         this.eta = eta;
         this.km = km;
     }
@@ -60,19 +65,20 @@ public class Biglietto {
 
         //Metodo per il calcolo dello sconto
             private double calcolaSconto () {
-                double scontoBiglietto = 0;
+                BigDecimal kmDecimal = new BigDecimal(km);
+                BigDecimal calcoloSconto = kmDecimal.multiply(PREZZO_KM);
                 if (eta >= 65) {
-                    scontoBiglietto = km * 0.4;
+                     = kmDecimal.multiply(SCONTO_MAGGIORI);
                 } else if (eta <= 18){
-                    scontoBiglietto = km * 0.2;
+                     calcoloSconto = calcoloSconto.multiply(SCONTO_MINORI);
                 }
-                return scontoBiglietto;
+                return calcoloSconto;
             }
 
         //Metodo per il calcolo del prezzo finale del biglietto
 
             public double calcoloPrezzo () {
-                double prezzoFinale = (km * 0.21) + calcolaSconto();
+                double prezzoFinale = (km * 0.21) - calcolaSconto();
                 return prezzoFinale;
             }
 }
