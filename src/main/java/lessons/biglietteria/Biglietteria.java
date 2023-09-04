@@ -41,9 +41,8 @@ public class Biglietteria {
             }
             System.out.println(bigliettoUno);
             //calcolo il prezzo
-            double prezzoBiglietto = bigliettoUno.calcoloPrezzo();
 
-            System.out.println("Il prezzo del biglietto è: " + prezzoBiglietto);
+            System.out.println("Il prezzo del biglietto è: " + bigliettoUno.calcoloPrezzo());
 
 
 

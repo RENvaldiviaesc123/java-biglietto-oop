@@ -64,21 +64,27 @@ public class Biglietto {
         }
 
         //Metodo per il calcolo dello sconto
-            private double calcolaSconto () {
+            private BigDecimal calcolaSconto () {
                 BigDecimal kmDecimal = new BigDecimal(km);
-                BigDecimal calcoloSconto = kmDecimal.multiply(PREZZO_KM);
+                BigDecimal prezzoBase = kmDecimal.multiply(PREZZO_KM);
                 if (eta >= 65) {
-                     = kmDecimal.multiply(SCONTO_MAGGIORI);
+                    BigDecimal sconto = prezzoBase.multiply(SCONTO_MAGGIORI);
+                    return sconto;
                 } else if (eta <= 18){
-                     calcoloSconto = calcoloSconto.multiply(SCONTO_MINORI);
+                    BigDecimal sconto = prezzoBase.multiply(SCONTO_MINORI);
+                    return sconto;
+                } else {
+                    BigDecimal sconto = null;
                 }
-                return calcoloSconto;
+                return calcolaSconto();
             }
 
         //Metodo per il calcolo del prezzo finale del biglietto
 
-            public double calcoloPrezzo () {
-                double prezzoFinale = (km * 0.21) - calcolaSconto();
-                return prezzoFinale;
+            public BigDecimal calcoloPrezzo () {
+                BigDecimal kmDecimal = new BigDecimal(km);
+                BigDecimal prezzo = kmDecimal.multiply(PREZZO_KM);
+                BigDecimal prezzoTotale = prezzo.subtract(calcolaSconto());
+                return prezzoTotale;
             }
 }
