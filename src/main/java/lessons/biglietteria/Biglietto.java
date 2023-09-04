@@ -47,14 +47,14 @@ public class Biglietto {
         //Metodo per la validazione dei km
         private void isValidKm (int km){
             if (km <= 0){
-                throw new RuntimeException();
+                throw new RuntimeException("Numero di km non valido!");
             }
         }
 
         //Metodo per la validazione dell'eta
         private void isValidEta (int eta) {
-            if(eta < 0 || eta > 150) {
-                throw new RuntimeException();
+            if(eta < 0 || eta > 150 ) {
+                throw new RuntimeException("Età non valida!");
             }
         }
 
@@ -71,7 +71,8 @@ public class Biglietto {
 
         //Metodo per il calcolo del prezzo finale del biglietto
 
-            public void  calcoloPrezzo () {
-                double prezzoFinale = (km * 0.2) + calcolaSconto();
+            public double calcoloPrezzo () {
+                double prezzoFinale = (km * 0.21) + calcolaSconto();
+                return prezzoFinale;
             }
 }
